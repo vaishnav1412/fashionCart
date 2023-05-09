@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+        <Title>FASHION</Title>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
+    <!------------razopay----------->
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="py-5 text-center">
+            <h2 style="color: rgb(8, 8, 12);font-weight: 500;">CHECKOUT PAGE</h2>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 order-md-2 mb-4">
+
+
+
+                <div class="input-group">
+                    <input type="text" class="form-control" id="code" placeholder="coupon code">
+                    <div class="input-group-append">
+                        <button class="btn btn-secondary" onclick="applycoupon($('#code').val())">Apply Coupon</button>
+                    </div>
+                </div>
+                <br>
+                <ul class="list-group mb-3 ">
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span name="amount">Total</span>
+                        <strong id="gt2">
+                            <%=Total%>
+                        </strong>
+                    </li>
+                </ul>
+
+            </div>
+
+            <div class="col-md-8 order-md-1">
+                <h4 class="mb-3">Billing Address</h4>
+                <form id="checkout-form" class="needs-validation" method="post">
+                    <div class="row">
+
+
+                        <% if(address !=0){ address.forEach((add,index)=>{
+                            %>
+                            <div class="col-md-4">
+                                <div class="card  mb-3" style="max-width: 18rem;">
+                                    <div style="margin: 5%;">
+                                        <div class="custom-control custom-checkbox">
+
+                                            <label class="custom-control-label" for="">
+                                                Name : <%=add.userName%> <br>
+                                                    Phone : <%=add.mobile%><br>
+                                                        Phone : <%=add.alternativeMob%><br>
+                                                            <p style="max-width: 80%;"> Address : <%=add.address%><br>
+                                                            </p>
+                                                            City : <%=add.city%> <br>
+                                                                Landmark : <%=add.landmark%> <br>
+                                                                    State : <%=add.state%><br>
+                                                                        PIN : <%=add.pincode%><br>
+                                            </label>
+
+                                            <input type="radio"
+                                                value="<%=add.userName%>,<%=add.address%>,<%=add.city%>,<%=add.state%>,<%=add.pincode%>"
+                                                name="address">
+                                        </div>
+                                        <br>
+                                        <div>
+                                            <div>
+                                            <a href="/removecheckoutaddress?id=<%=add._id%>"><button onclick="checker()"
+                                                    type="button" class="btn btn-secondary">Remove Address </button></a>
+                                            </div>
+                                               <br>
+                                            <div class="btn-group">
+                                                <a class="btn  btn-info" 
+                                                    href="./editcheckoutaddress2?id=<%=add._id%>&index=<%=index%>">
+                                                    Edit Address
+
+                                                </a>
+
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <% }) }else{ %>
+                                <div class="row">
+                                    <p class="pl-5" style="color: red;">
+                                        <%=message%>
+                                    </p>
+                                </div>
+                                <% } %>
+                    </div>
+
+
+                    <a href="/addadress"><button type="button" class="btn btn-success rounded-pill m-2">Add
+                            new address</button></a>
+
+
+
+
+            </div>
+        </div>
+
+
+        <div class="row" style="margin-left: 45%;">
+            <div class="col-md-4 mb-3">
+                
+                <h4 class="mb-3">Payment</h4>
+                <div class="d-block my-3">
+                    <div class="custom-control custom-radio">
+                        <input id="COD" name="payment" type="radio" class="custom-control-input" value="COD">
+                        <label class="custom-control-label" for="credit">CASH ON DELIVERY</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                        <input id="debit" name="payment" type="radio" class="custom-control-input" value="ONLINE">
+                        <label class="custom-control-label" for="debit">ONLINE PAYMENT</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                        <input id="debit" name="pay" type="radio" class="custom-control-input" value="wallet">
+                        <label class="custom-control-label" for="debit">wallet</label>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        
+    </div>
+    <button type="submit" style="margin-left: 45%;" class="btn btn-primary btn-lg btn-block"> Continue to checkout
+    </button>
+    </form>
+    </div>
+    </div>
+    <footer class="my-5 pt-5 text-muted text-center text-small">
+        <p class="mb-1">© 2017-2019 Company Name</p>
+        <ul class="list-inline">
+            <li class="list-inline-item"><a href="#">Privacy</a></li>
+            <li class="list-inline-item"><a href="#">Terms</a></li>
+            <li class="list-inline-item"><a href="#">Support</a></li>
+        </ul>
+    </footer>
+
+    <script>
+
+        function applycoupon(code) {
+            const amount = document.getElementById('gt2').innerHTML;
+            console.log(amount);
+            $.ajax({
+                url: "/applyCoupon",
+                data: {
+                    code: code,
+                    amount: amount
+                },
+                method: "post",
+                success: (response) => {
+                    console.log(response);
+                    if (response.user) {
+                        console.log("coupon limit exceeded");
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'coupon already used!'
+                        })
+                    } else if (response.limit) {
+                        console.log("coupon limit exceeded");
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'coupon limit exceeded!'
+                        })
+                    } else if (response.status) {
+                        console.log("This coupon now not in use");
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'coupon limit exceeded!'
+                        })
+                    } else if (response.cartAmount) {
+                        console.log("You cant use the coupon...Buy more");
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'You cant use the coupon...Buy more'
+                        })
+                    } else if (response.date) {
+                        console.log("coupon date expired");
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'date expired!!!'
+                        })
+                    } else if (response.amountOkey) {
+                        console.log("discount granded");
+
+                        document.getElementById('gt2').innerHTML = response.disTotal
+                        console.log("done");
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: 'Discount redeemed',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                    } else if (response.invalid) {
+                        console.log("invalid coupon");
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Invalid Coupon!!!'
+                        })
+                    }
+                }
+            })
+        }
+
+
+
+
+
+        $("#checkout-form").submit((e) => {
+
+            const amount = document.getElementById("gt2").innerHTML;
+            let address = $("input[name=address]:checked").val();
+            let payment = $("input[name=payment]:checked").val();
+
+            e.preventDefault();
+            $.ajax({
+                url: "/checkout",
+                method: "post",
+                data: {
+
+                    total: amount,
+
+                    address: address,
+                    payment: payment
+                },
+                success: (response) => {
+
+                    if (response.codSuccess == true) {
+                        console.log("test");
+                        location.href = "/orderSuccess";
+                    } else {
+                        razorpayPayment(response.order);
+                    }
+                }
+            })
+        })
+
+        function razorpayPayment(order) {
+            var options = {
+                "key": "rzp_test_KgphPCgit7FD2N", // Enter the Key ID generated from the Dashboard
+                "amount": order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+                "currency": "INR",
+                "name": "Acme Corp", //your business name
+                "description": "Test Transaction",
+                "image": "https://example.com/your_logo",
+                "order_id": order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+                "handler": function (response) {
+                    verifyPayment(response, order);
+                },
+                "prefill": {
+                    "name": "Gaurav Kumar", //your customer's name
+                    "email": "gaurav.kumar@example.com",
+                    "contact": "9000090000"
+                },
+                "notes": {
+                    "address": "Razorpay Corporate Office"
+                },
+                "theme": {
+                    "color": "#3399cc"
+                }
+            };
+
+            var rzp1 = new Razorpay(options);
+            rzp1.open();
+        }
+
+        function verifyPayment(payment, order) {
+            const amount = document.getElementById("gt2").innerHTML;
+            $.ajax({
+                url: "/verifyPayment",
+                method: "post",
+                data: {
+                    payment,
+                    amount,
+                    order
+                },
+                success: (response) => {
+                    if (response.success) {
+                        location.href = '/orderSuccess';
+                    } else {
+                        alert('payment failed');
+                    }
+                }
+            })
+        }
+    </script>
+
+    <script>
+        function checker() {
+            var result = confirm('Are you sure..?')
+            if (result == false) {
+                event.preventDefault()
+            }
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="sweetalert2.all.min.js"></script>
+    <script src="sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="sweetalert2.min.css">
+
+
+</body>
+
+</html>

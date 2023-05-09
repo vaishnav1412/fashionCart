@@ -1,0 +1,63 @@
+
+<%- include('../admin/layoute/header.ejs')%>
+
+
+            <h6 class="mb-4">Catogory Management</h6>
+            <div class="table-responsive">
+                <table class="table" style="border: 3px;">
+                    <button type="submit"><a href="./addCatogory"> Add  Catogory</a></button>
+                    <thead>
+                        <tr>
+                            <th scope="col">No</th>
+                            <th scope="col">Catogory</th>
+                            <th scope="col">status</th>
+                            <th scope="col">action1</th>
+                            <th scope="col">action2</th>
+                            
+                        </tr>
+        
+                    </thead>
+                    <tbody>
+                        <% if(catogoryData.length>0){
+                            for(let i=0;i<catogoryData.length;i++){ %>
+                                <tr>
+                                    <td >
+                                        <%=i+1%>
+                                    </td>
+                                    <td>
+                                        <%=catogoryData [i].catogory%>
+                                    </td>
+                                    <td>
+                                        <%= catogoryData[i].blocked%>
+                                    </td>
+                                   
+                                    <td>
+                
+                                        <button style="color: brown; cursor: pointer; "  ><a href="/admin/blockCatogory?id=<%= catogoryData[i]._id%>">Block</a></button>
+                
+                                    </td>
+                                    <td>
+                
+                                        <button style="color: brown; cursor: pointer; "  ><a href="/admin/unblockCatogory?id=<%= catogoryData[i]._id%>">Un Block</a></button>
+                
+                                    </td>
+                                   
+                
+                                </tr>
+                
+                                <% } } else{ %>
+                                    <tr colspan="5">user not found</tr>
+                                    <% } %>
+                    </tbody>
+                </table>
+            </div>
+            </div>
+            </div>
+            </div>
+            </div>
+            <!-- Table End -->
+
+            
+            <%- include('../admin/layoute/footer.ejs')%>
+
+

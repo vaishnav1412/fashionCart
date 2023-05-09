@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<Title>FASHION</Title>
+	<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"
+		id="bootstrap-css">
+	<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+
+<body>
+	<br><br>
+	<div class="container-fluid well span6" style="color: aqua;">
+		<div class="row-fluid">
+			<% if(userData.length>0){
+				for(let i=0;i<userData.length;i++){ %>
+			 <h4 style="color: darkolivegreen ;">MY WALLET :<%= userData[i].wallet%> $</h4>
+			
+			
+			
+			<div class="span8">
+				<h3 style="color: royalblue;"><%= userData[i].name%></h3>
+				<h6>Email     : <%= userData[i].email%></h6>
+				<h6>Age       :<%= userData[i].age%> </h6>
+				<h6>Mobile    : <%= userData[i].mobile%></h6>
+				<h6>Ref Link    : <a href=""><%= userData[i].referallink%> </a></h6>
+				
+			</div>
+			<% } } else{ %>
+				<tr colspan="5">user not found</tr>
+				<% } %>
+
+			<div class="span2">
+
+				<div class="btn-group">
+					<a class="btn  btn-info" data-toggle="dropdown" href="./editprofile">
+						Edit Profile
+						
+					</a>
+					
+				</div>
+				<br><br>
+				<div class="btn-group">
+					<a class="btn dropdown-toggle btn-success" data-toggle="dropdown" href="./addprofileaddress">
+						Add Address
+						
+					</a>
+					
+					
+				</div>
+                <br><br>
+				<div>
+					<a class="btn  btn-primary" data-toggle="dropdown" href="/trackorder">
+						Orders
+						
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<% if(address !=0){ 
+		address.forEach((add,index)=>{
+		%>
+	
+	<div class="container-fluid well span6" style="color: rgb(255, 136, 0);">
+		<div class="row-fluid">
+			
+			
+			<div class="span8">
+				<h3 style="color: royalblue;">MY ADDRESS</h3>
+				<h6>Name     :  <%=add.userName%>    </h6>
+				<h6>Phone    :  <%=add.mobile%>  </h6>
+				<h6>Phone    :  <%=add.alternativeMob%> </h6>
+				<h6>Address  :  <%=add.address%>  </h6>
+				<h6>city     :  <%=add.city%> </h6>
+				<h6>landmark :  <%=add.landmark%> </h6>
+				<h6>state    :  <%=add.state%></h6>
+				<h6>Pin      :  <%=add.pincode%> </h6>
+				
+				
+				
+			</div>
+			
+
+			<div class="span2">
+				
+				
+				<div class="btn-group">
+					<a class="btn dropdown-toggle btn-info" data-toggle="dropdown" href="./editprofileaddress?id=<%=add._id%>&index=<%=index%>">
+						Edit Address
+						
+					</a>
+					
+					
+				</div>
+				<br><br>
+				<div class="btn-group">
+					<a class="btn dropdown-toggle btn-danger" onclick="checker()"  data-toggle="dropdown" href="./removeprofileaddress?id=<%=add._id%>">
+					Remove Address
+					</a>
+					
+					
+				</div>
+			</div>
+			
+
+			
+		</div>
+	</div>
+	<% }) }else{ %>
+		<div class="row">address not found
+			<p class="pl-5" style="color: red;">
+				<%=message%>
+			</p>
+		</div>
+		<% } %>
+
+		<script>
+			function checker(){
+				var result = confirm('Are you sure..?')
+				if (result==false) {
+					event.preventDefault()
+				}
+			}
+		</script>
+
+</body>
+
+</html>

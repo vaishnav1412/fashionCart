@@ -1,0 +1,77 @@
+<%- include('../admin/layoute/header.ejs')%>
+
+    <h6 class="mb-4">USER DETAILS</h6>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">No</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Age</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Mobile</th>
+                    <th scope="col">is_varified</th>
+                    <th scope="col">action </th>
+
+                </tr>
+            </thead>
+            <tbody>
+
+                <% if(users.length>0){
+                    for(let i=0;i<users.length;i++){ %>
+                        <tr>
+                            <td>
+                                <%=i+1%>
+                            </td>
+                            <td>
+                                <%= users[i].name%>
+                            </td>
+                            <td>
+                                <%= users[i].age%>
+                            </td>
+                            <td>
+                                <%= users[i].email%>
+                            </td>
+                            <td>
+                                <%= users[i].mobile%>
+                            </td>
+                            <td>
+                                <%= users[i].is_varified%>
+                            </td>
+
+                            <% if (users[i].is_blocked==0) { %>
+                                <td>Active</td>
+                                <td><a style="color:rgb(8, 8, 8);"
+                                        href="/admin/blockUser?id=<%= users[i]._id%>">BLOCK</a></td>
+                                <% } else { %>
+                                    <td>Blocked</td>
+                                    <td><a style="color: rgb(172, 81, 7);"
+                                            href="/admin/unblockUser?id=<%= users[i]._id%>">UNBLOCK</a></td>
+                                             <% } %>
+
+
+
+
+
+
+
+
+
+                        </tr>
+
+                        <% } } else{ %>
+                            <tr colspan="5">user not found</tr>
+                            <% } %>
+
+
+
+            </tbody>
+        </table>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <!-- Table End -->
+
+    <%- include('../admin/layoute/footer.ejs')%>

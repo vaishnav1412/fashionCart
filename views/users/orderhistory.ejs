@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>FASHION</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="images/icons/favicon.png" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="fonts/linearicons-v1.0.0/icon-font.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/slick/slick.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/MagnificPopup/magnific-popup.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="css/util.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <!--===============================================================================================-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+
+</head>
+
+<body class="animsition">
+
+    <header class="header-v2">
+		<!-- Header desktop -->
+		<div class="container-menu-desktop trans-03">
+			<div class="wrap-menu-desktop">
+				<nav class="limiter-menu-desktop p-l-45">
+					<!-- Logo desktop -->
+					<img style="width: 5%; margin-right: 10Px;" src="../images/original-removebg-preview.png" alt="">
+					<img style="width: 7%; margin-right: 30px;" src="../images/type-removebg.png" alt="">
+					<!-- Menu desktop -->
+					<div class="menu-desktop">
+						<ul class="main-menu">
+							<li class="active-menu">
+								<a href="/home">Home</a>
+							</li>
+							<li>
+								<a href="/shop">Shop</a>
+							</li>
+						</ul>
+					</div>
+					<!-- Icon header -->
+					<div class="wrap-icon-header flex-w flex-r-m h-full">
+						<div class="flex-c-m h-full p-r-24">
+							<div class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 js-show-modal-search">
+								<i class="zmdi zmdi-search"></i>
+							</div>
+						</div>
+						<div class="flex-c-m h-full p-l-18 p-r-25 bor5">
+							<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
+								<a href="/myaccount"><i class="zmdi zmdi-account"></i></a>
+							</div>
+							<a href="/loadWishlist" class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 ">
+								<i class="zmdi zmdi-favorite-outline"></i>
+							</a>
+							<div class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 ">
+								<a href="/cart"><i class="zmdi zmdi-shopping-cart"></i></a>
+							</div>
+						</div>
+						<div class="flex-c-m h-full p-lr-19">
+							<div class=" btn  btn-danger cl2 hov-cl1 trans-04 p-lr-11 ">
+								<a href="/logout">Logout</a>
+							</div>
+						</div>
+					</div>
+				</nav>
+			</div>
+		</div>
+		<!-- Modal search not edit -->
+		<div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
+			<div class="container-search-header">
+				<button class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search">
+					<img src="images/icons/icon-close2.png" alt="CLOSE">
+				</button>
+				<form class="wrap-search-header flex-w p-l-15">
+					<button class="flex-c-m trans-04">
+						<i class="zmdi zmdi-search"></i>
+					</button>
+					<input class="plh3" type="text" name="search" placeholder="Search...">
+				</form>
+			</div>
+		</div>
+	</header>
+    <!-------------headder------------>
+    <body>
+        <h5 style="color: rgb(39, 38, 30); text-align: center; font-weight: 500;" class="mb-4">ORDER HISTORY</h5>
+        <div class="table-responsive" >
+            <table class="table table-striped ,table table-bordered border-secondary"
+                style="border: 5px;  width: 90%; margin-left: 5%;">
+                <thead >
+                    <tr>
+                        <th scope="col">No</th>
+                        <th scope="col">Order Id</th>
+                        <th scope="col">Payment mode</th>
+                        <th scope="col">Date Of Order</th>
+                        <th scope="col">Order Status</th>
+                        <th scope="col">View Details</th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    <% if(productData.length>0){
+
+                        for(let i=0;i<productData.length;i++){ %>
+                            <tr>
+                                <td>
+                                    <%=i+1%>
+                                </td>
+                                <td>
+                                    <%= productData[productData.length-i-1]._id%>
+                                </td>
+
+                                <td>
+                                    <%= productData[productData.length-i-1].paymentMethod%>
+                                </td>
+                                <td>
+
+                                    <%= productData[productData.length-i-1].date.toISOString().substring(0,10)%>
+                                </td>
+
+
+                                <% if ( productData[productData.length-i-1].status=='placed' ) { %>
+                                    <td>placed</td>
+
+                                    <% } else { %>
+                                        <td>deliverd</td>
+                                                 <% } %>
+                                            <td>
+                                                <button style="color: brown; cursor: pointer; " type="submit"
+                                                    value="Update products"><a
+                                                        href="/viewoproducts?id=<%= productData[productData.length-i-1]._id%>">view
+                                                    </a></button>
+                                            </td>
+                            </tr>
+                            <% } } else{ %>
+                                <tr colspan="5">order not fount</tr>
+                                <% } %>
+                </tbody>
+            </table>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        <!-- Table End -->
+    </body>
+    <!-- Back to top -->
+    <div class="btn-back-to-top" id="myBtn">
+        <span class="symbol-btn-back-to-top">
+            <i class="zmdi zmdi-chevron-up"></i>
+        </span>
+    </div>
+        <!-- add to wish list ajax -->
+        <script>
+            function addToWishlist(id) {
+                $.ajax({
+                    url: "/wishlist",
+                    method: "post",
+                    data: {
+                        query: id
+                    },
+                    success: (response) => {
+                        if (response.success) {
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'success',
+                                title: 'Product added to wishlist',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                        } else if (response.check) {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: 'Already added to wishlist!!'
+                            })
+                        }
+                    }
+                })
+            }
+        </script>
+
+        <!--===============================================================================================-->
+        <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+        <!--===============================================================================================-->
+        <script src="vendor/animsition/js/animsition.min.js"></script>
+        <!--===============================================================================================-->
+        <script src="vendor/bootstrap/js/popper.js"></script>
+        <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+        <!--===============================================================================================-->
+        <script src="vendor/select2/select2.min.js"></script>
+        <script>
+            $(".js-select2").each(function () {
+                $(this).select2({
+                    minimumResultsForSearch: 20,
+                    dropdownParent: $(this).next('.dropDownSelect2')
+                });
+            })
+        </script>
+        <!--===============================================================================================-->
+        <script src="vendor/daterangepicker/moment.min.js"></script>
+        <script src="vendor/daterangepicker/daterangepicker.js"></script>
+        <!--===============================================================================================-->
+        <script src="vendor/slick/slick.min.js"></script>
+        <script src="js/slick-custom.js"></script>
+        <!--===============================================================================================-->
+        <script src="vendor/parallax100/parallax100.js"></script>
+        <script>
+            $('.parallax100').parallax100();
+        </script>
+        <!--===============================================================================================-->
+        <script src="vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
+        <script>
+            $('.gallery-lb').each(function () { // the containers for all your galleries
+                $(this).magnificPopup({
+                    delegate: 'a', // the selector for gallery item
+                    type: 'image',
+                    gallery: {
+                        enabled: true
+                    },
+                    mainClass: 'mfp-fade'
+                });
+            });
+        </script>
+        <!--===============================================================================================-->
+        <script src="vendor/isotope/isotope.pkgd.min.js"></script>
+        <!--===============================================================================================-->
+        <script src="vendor/sweetalert/sweetalert.min.js"></script>
+        <script>
+            $('.js-addwish-b2').on('click', function (e) {
+                e.preventDefault();
+            });
+
+            $('.js-addwish-b2').each(function () {
+                var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
+                $(this).on('click', function () {
+                    swal(nameProduct, "is added to wishlist !", "success");
+
+                    $(this).addClass('js-addedwish-b2');
+                    $(this).off('click');
+                });
+            });
+
+            $('.js-addwish-detail').each(function () {
+                var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
+
+                $(this).on('click', function () {
+                    swal(nameProduct, "is added to wishlist !", "success");
+
+                    $(this).addClass('js-addedwish-detail');
+                    $(this).off('click');
+                });
+            });
+
+            /*---------------------------------------------*/
+
+            $('.js-addcart-detail').each(function () {
+                var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
+                $(this).on('click', function () {
+                    swal(nameProduct, "is added to cart !", "success");
+                });
+            });
+        </script>
+        <!--===============================================================================================-->
+        <script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+        <script>
+            $('.js-pscroll').each(function () {
+                $(this).css('position', 'relative');
+                $(this).css('overflow', 'hidden');
+                var ps = new PerfectScrollbar(this, {
+                    wheelSpeed: 1,
+                    scrollingThreshold: 1000,
+                    wheelPropagation: false,
+                });
+
+                $(window).on('resize', function () {
+                    ps.update();
+                })
+            });
+        </script>
+        <!--===============================================================================================-->
+        <script src="js/main.js"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+            integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+            crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+            integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+            crossorigin="anonymous"></script>
+
+</body>
+
+</html>

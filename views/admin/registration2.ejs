@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+  <style>
+    .gradient-custom-3 {
+      /* fallback for old browsers */
+      background: #84fab0;
+
+      /* Chrome 10-25, Safari 5.1-6 */
+      background: -webkit-linear-gradient(to right, rgba(132, 250, 176, 0.5), rgba(143, 211, 244, 0.5));
+
+      /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+      background: linear-gradient(to right, rgba(132, 250, 176, 0.5), rgba(143, 211, 244, 0.5))
+    }
+
+    .gradient-custom-4 {
+      /* fallback for old browsers */
+      background: #84fab0;
+
+      /* Chrome 10-25, Safari 5.1-6 */
+      background: -webkit-linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1));
+
+      /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+      background: linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1))
+    }
+  </style>
+</head>
+<style>
+  html * {
+box-sizing: border-box;
+}
+p {
+margin: 0;
+}
+.upload__box {
+padding: 40px;
+}
+.upload__inputfile {
+width: 0.1px;
+height: 0.1px;
+opacity: 0;
+overflow: hidden;
+position: absolute;
+z-index: -1;
+}
+.upload__btn {
+display: inline-block;
+font-weight: 600;
+color: #c1e4e9;
+text-align: center;
+min-width: 116px;
+padding: 5px;
+transition: all 0.3s ease;
+cursor: pointer;
+border: 2px solid;
+background-color: #1a1c23;
+border-color: #454674;
+border-radius: 10px;
+line-height: 18px;
+font-size: 14px;
+}
+.upload__btn:hover {
+background-color: unset;
+color: #4045ba;
+transition: all 0.3s ease;
+}
+.upload__btn-box {
+margin-bottom: 10px;
+}
+.upload__img-wrap {
+display: flex;
+flex-wrap: wrap;
+margin: 0 -10px;
+}
+.upload__img-box {
+width: 150px;
+padding: 0 10px;
+margin-bottom: 12px;
+}
+.upload__img-close {
+width: 24px;
+height: 24px;
+border-radius: 50%;
+background-color: rgba(0, 0, 0, 0.5);
+position: absolute;
+top: 10px;
+right: 10px;
+text-align: center;
+line-height: 24px;
+z-index: 1;
+cursor: pointer;
+}
+.upload__img-close:after {
+content: "\2716";
+font-size: 14px;
+color: white;
+}
+.img-bg {
+background-repeat: no-repeat;
+background-position: center;
+background-size: cover;
+position: relative;
+padding-bottom: 100%;
+}
+</style>
+
+<body background="https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp">
+
+
+  <section class="vh-100 bg-image">
+    <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+      <div class="container h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+            <div class="card" style="border-radius: 15px;">
+              <div class="card-body p-5">
+                <h2 class="text-uppercase text-center mb-5">INSERT PRODUCTS</h2>
+
+                <form action="" method="post" enctype="multipart/form-data">
+
+                  <div class="form-outline ">
+                    <label class="form-label" for="form3Example1cg">Enter product name</label>
+                    <input type="text" name="name" id="a2" class="form-control form-control-lg" required />
+                    <p id="a1" style="color: red;"></p>
+                  </div>
+
+                  <label for="floatingSelect">Select category</label>
+                  
+                  <div class="form-floating mb-3">
+                   
+                    <select name="catogory" class="form-select" id="floatingSelect" required
+                      aria-label="Floating label select example">
+                      <% if(catogoryData.length> 0) {
+                        for(let i=0; i < catogoryData.length; i++) { %>
+                          <option value="<%= catogoryData[i].catogory %>">
+                            <%= catogoryData[i].catogory %>
+                          </option>
+                          
+                          <% } } %>
+                    </select>
+                   
+                              
+                  </div>
+
+                  <div class="form-outline ">
+                    <label class="form-label" for="form3Example1cg">Enter offer</label>
+                    <input type="number" name="offer"  class="form-control form-control-lg" />
+                   
+                  </div>
+
+
+                 
+
+                  <!-- <div class="form-outline ">
+                    <label class="form-label" for="form3Example1cg">Upload image</label>
+                    <input type="file" name="image" multiple id="b2"  class="form-control form-control-lg"
+                      required />
+                      <p id="b1" style="color: red;"></p>
+                  </div>  -->
+
+                 
+
+
+                  <div class="form-outline ">
+                    <label class="form-label" for="form3Example3cg">Enter quantity</label>
+                    <input type="number" name="quantity" id="c2" class="form-control form-control-lg"
+                      required />
+                      <p id="c1" style="color: red;"></p>
+                  </div>
+
+                  <div class="form-outline ">
+                    <label class="form-label" for="form3Example4cg">Enter price</label>
+                    <input type="number" name="price" id="d2" class="form-control form-control-lg"
+                      required />
+                      <p id="d1" style="color: red;"></p>
+                  </div>
+
+                  <div class="form-outline ">
+                    <label class="form-label" for="form3Example4cdg">Enter description</label>
+                    <input type="string" name="description" id="e2" class="form-control form-control-lg"
+                      required />
+                      <p id="e1" style="color: red;"></p>
+                  </div>
+                  
+                  <div class="upload__box">
+                    <div class="upload__btn-box">
+                      <label class="upload__btn">
+                        <p>Upload images</p>
+                        <input type="file" multiple="" data-max_length="20" id="b2" name="image" class="upload__inputfile" required>
+                      </label>
+                    </div>
+                    <div class="upload__img-wrap"></div>
+                  </div>
+                  <p id="b1" style="color: red;"></p>
+                 
+
+
+
+                  <div class="d-flex justify-content-center">
+                    <button type="submit"  class="btn btn-success btn-block btn-lg gradient-custom-4 text-body" onclick="validate()">ADD
+                      PRODUCTS</button>
+                  </div>
+                </form>
+                <script>
+                  function validate() {
+                    var name = document.getElementById('a2').value;
+                    var image = document.getElementById('b2').value;
+                    var quantity = document.getElementById('c2').value;
+                    var price = document.getElementById('d2').value;
+                    var description = document.getElementById('e2').value;
+                    
+
+                    if (name == '') {
+                      document.getElementById('a1').innerText = 'name must be required'
+                    }
+                    if (image== '') {
+                      document.getElementById('b1').innerText = 'image must be required'
+                    }
+
+                    if (quantity == '') {
+                      document.getElementById('c1').innerText = 'quantity must be required'
+                    }
+
+                    if (price == '') {
+                      document.getElementById('d1').innerText = 'price must be required'
+                    }
+
+                    if (description == '') {
+                      document.getElementById('e1').innerText = 'description must be required'
+                    }
+
+                    
+                  }
+                </script>
+               
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Optional JavaScript; choose one of the two! -->
+
+  <!-- Option 1: Bootstrap Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script >
+      jQuery(document).ready(function () {
+    ImgUpload();
+    });
+    function ImgUpload() {
+    var imgWrap = "";
+    var imgArray = [];
+    $('.upload__inputfile').each(function () {
+    $(this).on('change', function (e) {
+      imgWrap = $(this).closest('.upload__box').find('.upload__img-wrap');
+      var maxLength = $(this).attr('data-max_length');
+      var files = e.target.files;
+      var filesArr = Array.prototype.slice.call(files);
+      var iterator = 0;
+      filesArr.forEach(function (f, index) {
+        if (!f.type.match('image.*')) {
+          return;
+        }
+        if (imgArray.length > maxLength) {
+          return false
+        } else {
+          var len = 0;
+          for (var i = 0; i < imgArray.length; i++) {
+            if (imgArray[i] !== undefined) {
+              len++;
+            }
+          }
+          if (len > maxLength) {
+            return false;
+          } else {
+            imgArray.push(f);
+            var reader = new FileReader();
+            reader.onload = function (e) {
+              var html = "<div class='upload__img-box'><div style='background-image: url(" + e.target.result + ")' data-number='" + $(".upload__img-close").length + "' data-file='" + f.name + "' class='img-bg'><div class='upload__img-close'></div></div></div>";
+              imgWrap.append(html);
+              iterator++;
+            }
+            reader.readAsDataURL(f);
+          }
+        }
+      });
+    });
+    });
+    $('body').on('click', ".upload__img-close", function (e) {
+    var file = $(this).parent().data("file");
+    for (var i = 0; i < imgArray.length; i++) {
+      if (imgArray[i].name === file) {
+        imgArray.splice(i, 1);
+        break;
+      }
+    }
+    $(this).parent().parent().remove();
+    });
+    }
+  </script>
+    
+
+  <!-- Option 2: Separate Popper and Bootstrap JS -->
+  <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    -->
+</body>
+
+</html>

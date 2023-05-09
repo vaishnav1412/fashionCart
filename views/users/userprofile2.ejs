@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>FASHION</title>
+	<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"
+		id="bootstrap-css">
+	<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+
+<body>
+	<br><br>
+	<div class="container-fluid well span6">
+		<div class="row-fluid">
+			<% if(userData.length>0){
+				for(let i=0;i<userData.length;i++){ %>
+			 <h4 style="color: darkolivegreen ;">MY WALLET :<%= userData[i].wallet%> $</h4>
+			
+			
+			
+			<div class="span8">
+				<h3 style="color: royalblue;"><%= userData[i].name%></h3>
+				<h6>Email     : <%= userData[i].email%></h6>
+				<h6>Age       :<%= userData[i].age%> </h6>
+				<h6>Mobile    : <%= userData[i].mobile%></h6>
+				<h6>Ref Link    : <a href=""> <%= userData[i].referallink%></a></h6>
+				
+			</div>
+			<% } } else{ %>
+				<tr colspan="5">user not found</tr>
+				<% } %>
+
+			<div class="span2">
+				<div class="btn-group">
+					<a class="btn  btn-secondary" data-toggle="dropdown" href="./editprofile">
+						<button>Edit Profile</button>
+						
+					</a>
+					
+				</div>
+				<br><br>
+				<div class="btn-group">
+					<a class="btn dropdown-toggle btn-secondary" data-toggle="dropdown" href="./addprofileaddress">
+						<button>Add Address</button>
+						
+					</a>
+					
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+
+		<script>
+			function checker(){
+				var result = confirm('Are you sure..?')
+				if (result==false) {
+					event.preventDefault()
+				}
+			}
+		</script>
+
+</body>
+
+</html>

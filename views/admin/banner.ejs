@@ -1,0 +1,60 @@
+<%- include('../admin/layoute/header.ejs')%>
+
+<h6 class="mb-4">Banner Management</h6>
+<div class="table-responsive">
+    <table class="table" style="border: 3px;">
+        <button type="submit"><a href="./addbanner"> Add  Banner</a></button>
+        <thead>
+            <tr>
+                <th scope="col">No</th>
+                <th scope="col">Type</th>
+                <th scope="col">Caption</th>
+                <th scope="col">Image</th>
+                
+                
+            </tr>
+
+        </thead>
+        <% if(bannerData.length>0){
+
+            for(let i=0;i<bannerData.length;i++){ %>
+                <tr>
+                    <td>
+                        <%=i+1%>
+                    </td>
+                    <td>
+                        <%= bannerData[i].type%>
+                    </td>
+
+                    <td>
+                        <%= bannerData[i].caption%>
+                    </td>
+                    <td>
+                        <img src="/admin/<%= bannerData[i].image[0]%>" width="100px" height="100px">
+                
+                    </td>
+                    
+                    <td>
+
+                        <button style="color: brown; cursor: pointer; " type="submit" value="Update products"><a
+                                href="/admin/removebanner?id=<%= bannerData[i]._id%>">Remove</a></button>
+
+                    </td>
+
+                </tr>
+                <% } } else{ %>
+                    <tr colspan="5">banner not found</tr>
+                    <% } %>
+
+        </tbody>
+    </table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Table End -->
+
+
+
+<%- include('../admin/layoute/footer.ejs')%>

@@ -1,0 +1,66 @@
+<%- include('../admin/layoute/header.ejs')%>
+    <div class="container-fluid well span6">
+        <div class="row-fluid">
+            <br><br>
+            <div class="span2">
+                <div class="btn-group">
+                    <a class="btn  btn-secondary" data-toggle="dropdown" href="./addcoupon">
+                        <button>Add Coupon</button>
+                    </a>
+                </div>
+                <br><br>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Number</th>
+                                <th scope="col">Coupon Code</th>
+                                <th scope="col">Discount Type</th>
+                                <th scope="col">Discount Amount</th>
+                                <th scope="col">Max Cart Amount</th>
+                                <th scope="col">Max Discount Amount</th>
+                                <th scope="col">Max Users</th>
+                                <th scope="col">Expiry Date</th>
+                                <th scope="col">Status</th>
+                                <th>action</th>
+                                <th>Edit</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% if(couponData.length>0){
+                                for(let i=0;i<couponData.length;i++){ %>
+                                    <tr>
+                                        <th><%=i+1%></th> 
+                                        <th><%=couponData[couponData.length-i-1].code%></th>
+                                        <th><%=couponData[couponData.length-i-1].discountType%></th>
+                                        <th><%=couponData[couponData.length-i-1].discountAmount%></th>
+                                        <th><%=couponData[couponData.length-i-1].maxCartAmount%></th>
+                                        <th><%=couponData[couponData.length-i-1].maxDiscountAmount%></th>
+                                        <th><%=couponData[couponData.length-i-1].maxUsers%></th>
+                                        <th><%=couponData[couponData.length-i-1].expiryDate.toISOString().substring(0,10)%> </th>
+                                        <th><%=couponData[couponData.length-i-1].status%></th>
+                                        <% if (couponData[couponData.length-i-1].status==true) { %>
+                                            <td><a style="color:rgb(8, 8, 8);"
+                                                    href="./blockcoupon?id=<%=couponData[couponData.length-i-1]._id%>">BLOCK</a>
+                                            </td>
+                                            <% } else { %>
+                                                <td><a style="color: rgb(172, 81, 7);"
+                                                        href="./unblockcoupon?id=<%=couponData[couponData.length-i-1]._id%>">UNBLOCK</a>
+                                                </td>
+                                                         <% } %>
+                                                    <th> <a class="btn  btn-secondary" data-toggle="dropdown"
+                                                            href="./editcoupon?id=<%=couponData[couponData.length-i-1]._id%>">
+                                                            <button>Edit</button>
+                                                        </a></th>
+                                    </tr>
+                                    <% } } else{ %>
+                                        <tr colspan="5">coupon not found</tr>
+                                        <% } %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include('../admin/layoute/footer.ejs')%>

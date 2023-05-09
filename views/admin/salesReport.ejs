@@ -1,0 +1,69 @@
+<%- include('../admin/layoute/header.ejs')%>
+
+
+
+<h5 class="mb-4" style="color: blue;">SALES REPORT</h5>
+
+<form action="/admin/getsalesreport">
+    <input  type="date" name="from" id="fromdate">
+    <input type="date" name="to" id="todate">
+    <button style="color: brown;" type="submit">Filter Report</button>
+</form>
+
+
+
+<div class="table-responsive">
+    <table class="table" style="border: 3px;">
+       
+        <thead>
+            <tr>
+                <th scope="col">No</th>
+                <th scope="col">Order Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Date</th>
+                <th scope="col">Amount</th>
+                <th scope="col">Payment</th>
+                <th scope="col">Status</th>
+                
+
+            </tr>
+
+        </thead>
+        <tbody>
+            
+            <% if(orderdetails.length>0){
+                for(let i=0;i<orderdetails.length;i++){ %>
+            <tr>
+                <td><%=i+1%></td>
+                <td><%=orderdetails[orderdetails.length-i-1]._id%></td>
+                <td><%=orderdetails[orderdetails.length-i-1].userName%></td>
+                <td><%=orderdetails[orderdetails.length-i-1].date.toISOString().substring(0,10)%></td>
+                
+            
+                <td><%=orderdetails[orderdetails.length-i-1].totalAmount%></td>
+                <td><%=orderdetails[orderdetails.length-i-1].paymentMethod%></td>
+                <td><%=orderdetails[orderdetails.length-i-1].status%></td>
+                
+            </tr>
+            <% } } else{ %>
+                <tr  colspan="5"><p style="color: red;">Report not found</p> </tr>
+                <% } %>
+
+       
+            
+
+        </tbody>
+    </table>
+    <a style="margin: 44%;" href="/admin/exportreport?from=<%=from%>&to=<%=to%>"><button>Download Pdf</button></a>
+    <a style="margin: 44%;" href="/admin/export2report?from=<%=from%>&to=<%=to%>"><button>Download Exel</button></a>
+    <br>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Table End -->
+
+
+
+<%- include('../admin/layoute/footer.ejs')%>

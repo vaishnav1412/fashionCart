@@ -1,0 +1,86 @@
+<%- include('../admin/layoute/header.ejs')%>
+
+
+    
+
+   
+    <h6 class="mb-4">PRODUCT DETAILS</h6>
+    <div class="table-responsive">
+        <table class="table" style="border: 3px;">
+            <button type="submit"><a href="./registration2"> Insert Product</a></button>
+            <thead>
+                <tr>
+                    <th scope="col">No</th>
+                    <th scope="col">Product name</th>
+                    <th scope="col">Catogory</th>
+                    <th scope="col">image</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">price</th>
+                    <th scope="col">Offer</th>
+                    <th scope="col">description</th>
+                    <th scope="col">B/Un</th>
+                    <th scope="col">Edit </th>
+
+
+                </tr>
+
+            </thead>
+            <tbody>
+                <% if(products.length>0){
+
+                    for(let i=0;i<products.length;i++){ %>
+                        <tr>
+                            <td>
+                                <%=i+1%>
+                            </td>
+                            <td>
+                                <%= products[i].name%>
+                            </td>
+
+                            <td>
+                                <%= products[i].catogory%>
+                            </td>
+                            <td>
+                                <img src="/admin/<%= products[i].image[0]%>" width="100px" height="100px">
+                        
+                            </td>
+                            
+                            <td>
+                                <%= products[i].quantity%>
+                            </td>
+                            <td>
+
+                                <%= products[i].price%>
+                            </td>
+                            <td>
+
+                                <%= products[i].offer%>
+                            </td>
+                            <td>
+                                <%= products[i].description%>
+                            </td>
+                            <td>
+                                <%= products[i].blocked%>
+                            </td>
+                            <td>
+
+                                <button style="color: brown; cursor: pointer; " type="submit" value="Update products"><a
+                                        href="/admin/editProduct?id=<%= products[i]._id%>">Edit products</a></button>
+
+                            </td>
+
+                        </tr>
+                        <% } } else{ %>
+                            <tr colspan="5">user not found</tr>
+                            <% } %>
+
+            </tbody>
+        </table>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <!-- Table End -->
+
+    <%- include('../admin/layoute/footer.ejs')%>
