@@ -6,9 +6,9 @@ const Product = require('../models/productModel')
 const Razorpay = require('razorpay')
 const exceljs = require('exceljs')
 
-const ejs = require('ejs')
-const pdf = require('html-pdf')
-const fs = require('fs')
+// const ejs = require('ejs')
+// const pdf = require('html-pdf')
+// const fs = require('fs')
 
 const path = require('path');
 const { log, Console } = require('console')
@@ -203,47 +203,47 @@ const loadsalesreport = async (req, res) => {
     }
 }
 
-const loadreportpdf = async (req, res) => {
-    try {
-        const from = req.query.from
-        const to = req.query.to
+// const loadreportpdf = async (req, res) => {
+//     try {
+//         const from = req.query.from
+//         const to = req.query.to
 
-        const orderdetails = await Order.find({ status: { $ne: "cancelled" } }).populate("products.productId").sort({ Date: -1 })
-        const products = orderdetails.product
+//         const orderdetails = await Order.find({ status: { $ne: "cancelled" } }).populate("products.productId").sort({ Date: -1 })
+//         const products = orderdetails.product
 
-        const data = {
-            report: req.session.Orderdtls
+//         const data = {
+//             report: req.session.Orderdtls
 
-        }
-        const filepath = path.resolve(__dirname, '../views/admin/salesreportpdf.ejs')
-        const htmlstring = fs.readFileSync(filepath).toString()
+//         }
+//         const filepath = path.resolve(__dirname, '../views/admin/salesreportpdf.ejs')
+//         const htmlstring = fs.readFileSync(filepath).toString()
 
-        let option = {
-            format: "A3"
-        }
-        const ejsData = ejs.render(htmlstring, data)
-        pdf.create(ejsData, option).toFile('salesReport.pdf', (err, response) => {
-            if (err) console.log(err);
+//         let option = {
+//             format: "A3"
+//         }
+//         const ejsData = ejs.render(htmlstring, data)
+//         pdf.create(ejsData, option).toFile('salesReport.pdf', (err, response) => {
+//             if (err) console.log(err);
 
-            const filepath = path.resolve(__dirname, '../salesReport.pdf')
-            fs.readFile(filepath, (err, file) => {
-                if (err) {
-                    console.log(err);
-                    return res.status(500).send('could not download file')
-                }
-                res.setHeader('Content-Type', 'application/pdf')
-                res.setHeader('Content-Disposition', 'attatchment;filename="Sales Report.pdf"')
+//             const filepath = path.resolve(__dirname, '../salesReport.pdf')
+//             fs.readFile(filepath, (err, file) => {
+//                 if (err) {
+//                     console.log(err);
+//                     return res.status(500).send('could not download file')
+//                 }
+//                 res.setHeader('Content-Type', 'application/pdf')
+//                 res.setHeader('Content-Disposition', 'attatchment;filename="Sales Report.pdf"')
 
-                res.send(file)
+//                 res.send(file)
 
-            })
-        })
-    } catch (error) {
+//             })
+//         })
+//     } catch (error) {
 
-        console.log(error.message);
+//         console.log(error.message);
 
-    }
-}
+//     }
+// }
 const loadreportexel = async(req,res)=>{
     try {
         const workbook = new exceljs.Workbook()
@@ -303,7 +303,7 @@ module.exports = {
     loadorderhistory,
     loaddetailsofproducts,
     loadsalesreport,
-    loadreportpdf,
+    // loadreportpdf,
     loaddeliverd,
     loadreportexel
 

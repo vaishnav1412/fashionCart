@@ -118,6 +118,7 @@ const wishtocart = async (req, res) => {
     }
 }
 
+
 module.exports = {
     addToWishlist,
     loadWishlist,
